@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Animated Background -->
+
+<div class="bg-animation">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader">
+
+    <div class="loader-circle"></div>
+
+    <h2>TaskFlow Pro</h2>
+
+</div>
+
+<!-- Toast -->
+
+<div id="toast"></div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <h2>TaskFlow</h2>
+
+        </div>
+
+        <div class="profile">
+
+            <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Aayushi" alt="profile">
+
+            <h3>Aayushi</h3>
+
+            <p>Java Developer</p>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-list-check"></i>
+
+                <span>Tasks</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Analytics</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Calendar</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <!-- Navbar -->
+
+        <header class="navbar">
+
+            <div>
+
+                <h1>
+
+                    Welcome Back 👋
+
+                </h1>
+
+                <p>
+
+                    Stay productive and manage your tasks efficiently.
+
+                </p>
+
+            </div>
+
+            <div class="nav-right">
+
+                <button id="themeBtn">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+                <button id="refreshBtn">
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- Hero Banner -->
+
+        <section class="hero">
+
+            <div class="hero-left">
+
+                <h1>
+
+                    Organize Your Work Beautifully
+
+                </h1>
+
+                <p>
+
+                    TaskFlow Pro helps you manage projects, deadlines,
+                    priorities and productivity with an elegant dashboard.
+
+                </p>
+
+                <button class="hero-btn">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    Start Managing
+
+                </button>
+
+            </div>
+
+            <div class="hero-right">
+
+                <img src="https://undraw.co/api/illustrations/tasks.svg"
+                     alt="hero">
+
+            </div>
+
+        </section>
+
+        <!-- Dashboard Cards -->
+
+        <section class="dashboard">
+
+            <div class="card">
+
+                <div>
+
+                    <h4>Total Tasks</h4>
+
+                    <h2 id="totalTasks">0</h2>
+
+                </div>
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+            <div class="card pending">
+
+                <div>
+
+                    <h4>Pending</h4>
+
+                    <h2 id="pendingTasks">0</h2>
+
+                </div>
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+            <div class="card progress">
+
+                <div>
+
+                    <h4>In Progress</h4>
+
+                    <h2 id="progressTasks">0</h2>
+
+                </div>
+
+                <i class="fa-solid fa-spinner"></i>
+
+            </div>
+
+            <div class="card completed">
+
+                <div>
+
+                    <h4>Completed</h4>
+
+                    <h2 id="completedTasks">0</h2>
+
+                </div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+        </section>
+
+        <!-- Today's Progress -->
+
+        <section class="progress-section">
+
+            <div class="progress-card">
+
+                <h2>Today's Progress</h2>
+
+                <p>
+
+                    Finish your important tasks before the deadline.
+
+                </p>
+
+                <div class="progress-bar">
+
+                    <div id="progressFill"></div>
+
+                </div>
+
+                <span id="progressPercent">
+
+                    0%
+
+                </span>
+
+            </div>
+
+            <div class="quote-card">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <h3>
+
+                    Productivity Quote
+
+                </h3>
+
+                <p>
+
+                    "Small progress each day adds up to remarkable results."
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Add Task Section Starts Here -->
+		<!-- ================= ADD TASK SECTION ================= -->
+
+		<section class="task-section">
+
+		    <div class="glass-card">
+
+		        <div class="section-header">
+
+		            <h2>
+
+		                <i class="fa-solid fa-plus"></i>
+
+		                Create New Task
+
+		            </h2>
+
+		            <p>Create, organize and track your work efficiently.</p>
+
+		        </div>
+
+		        <form id="taskForm">
+
+		            <div class="input-grid">
+
+		                <div class="input-group">
+
+		                    <label>Task Title</label>
+
+		                    <input
+		                        type="text"
+		                        id="title"
+		                        placeholder="Enter task title..."
+		                        required>
+
+		                </div>
+
+		                <div class="input-group">
+
+		                    <label>Due Date</label>
+
+		                    <input
+		                        type="date"
+		                        id="dueDate"
+		                        required>
+
+		                </div>
+
+		            </div>
+
+		            <div class="input-group">
+
+		                <label>Description</label>
+
+		                <textarea
+		                        id="description"
+		                        rows="5"
+		                        placeholder="Describe your task..."
+		                        required></textarea>
+
+		            </div>
+
+		            <div class="input-grid three">
+
+		                <div class="input-group">
+
+		                    <label>Priority</label>
+
+		                    <select id="priority">
+
+		                        <option value="HIGH">🔥 High</option>
+
+		                        <option value="MEDIUM">⭐ Medium</option>
+
+		                        <option value="LOW">🌿 Low</option>
+
+		                    </select>
+
+		                </div>
+
+		                <div class="input-group">
+
+		                    <label>Status</label>
+
+		                    <select id="status">
+
+		                        <option value="PENDING">Pending</option>
+
+		                        <option value="IN_PROGRESS">In Progress</option>
+
+		                        <option value="COMPLETED">Completed</option>
+
+		                    </select>
+
+		                </div>
+
+		                <div class="input-group">
+
+		                    <label>Category</label>
+
+		                    <select id="category">
+
+		                        <option value="WORK">Work</option>
+
+		                        <option value="STUDY">Study</option>
+
+		                        <option value="PERSONAL">Personal</option>
+
+		                        <option value="HEALTH">Health</option>
+
+		                    </select>
+
+		                </div>
+
+		            </div>
+
+		            <div class="button-row">
+
+		                <button type="submit" class="primary-btn">
+
+		                    <i class="fa-solid fa-plus"></i>
+
+		                    Save Task
+
+		                </button>
+
+		                <button type="reset" class="secondary-btn">
+
+		                    <i class="fa-solid fa-eraser"></i>
+
+		                    Reset
+
+		                </button>
+
+		            </div>
+
+		        </form>
+
+		    </div>
+
+		</section>
+
+		<!-- ================= FILTERS ================= -->
+
+		<section class="filter-section">
+
+		    <div class="glass-card">
+
+		        <div class="section-header">
+
+		            <h2>
+
+		                <i class="fa-solid fa-filter"></i>
+
+		                Search & Filters
+
+		            </h2>
+
+		        </div>
+
+		        <div class="filter-grid">
+
+		            <input
+		                    type="text"
+		                    id="searchInput"
+		                    placeholder="🔍 Search by Title...">
+
+		            <select id="statusFilter">
+
+		                <option value="">All Status</option>
+
+		                <option value="PENDING">Pending</option>
+
+		                <option value="IN_PROGRESS">In Progress</option>
+
+		                <option value="COMPLETED">Completed</option>
+
+		            </select>
+
+		            <select id="priorityFilter">
+
+		                <option value="">All Priority</option>
+
+		                <option value="HIGH">High</option>
+
+		                <option value="MEDIUM">Medium</option>
+
+		                <option value="LOW">Low</option>
+
+		            </select>
+
+		            <select id="categoryFilter">
+
+		                <option value="">All Category</option>
+
+		                <option value="WORK">Work</option>
+
+		                <option value="STUDY">Study</option>
+
+		                <option value="PERSONAL">Personal</option>
+
+		                <option value="HEALTH">Health</option>
+
+		            </select>
+
+		        </div>
+
+		        <div class="button-row">
+
+		            <button id="searchBtn" class="primary-btn">
+
+		                <i class="fa-solid fa-magnifying-glass"></i>
+
+		                Search
+
+		            </button>
+
+		            <button id="clearBtn" class="secondary-btn">
+
+		                <i class="fa-solid fa-broom"></i>
+
+		                Clear
+
+		            </button>
+
+		        </div>
+
+		    </div>
+
+		</section>
+
+		<!-- ================= TASK LIST ================= -->
+
+		<section class="table-section">
+
+		    <div class="glass-card">
+
+		        <div class="section-header">
+
+		            <h2>
+
+		                <i class="fa-solid fa-list-check"></i>
+
+		                Your Tasks
+
+		            </h2>
+
+		            <p>Manage all your daily work here.</p>
+
+		        </div>
+
+		        <div class="table-responsive">
+
+		            <table>
+
+		                <thead>
+
+		                <tr>
+
+		                    <th>Title</th>
+
+		                    <th>Description</th>
+
+		                    <th>Priority</th>
+
+		                    <th>Status</th>
+
+		                    <th>Category</th>
+
+		                    <th>Due Date</th>
+
+		                    <th>Actions</th>
+
+		                </tr>
+
+		                </thead>
+
+		                <tbody id="taskTable">
+
+		                </tbody>
+
+		            </table>
+
+		        </div>
+
+		    </div>
+
+		</section>
+
+		<!-- Part 3 will continue from here -->
+		<!-- ================= EDIT TASK MODAL ================= -->
+
+		<div id="editModal" class="modal">
+
+		    <div class="modal-content">
+
+		        <span class="close" id="closeModal">&times;</span>
+
+		        <h2>
+		            <i class="fa-solid fa-pen-to-square"></i>
+		            Edit Task
+		        </h2>
+
+		        <form id="editTaskForm">
+
+		            <input type="hidden" id="editId">
+
+		            <div class="input-group">
+
+		                <label>Task Title</label>
+
+		                <input
+		                        type="text"
+		                        id="editTitle"
+		                        required>
+
+		            </div>
+
+		            <div class="input-group">
+
+		                <label>Description</label>
+
+		                <textarea
+		                        id="editDescription"
+		                        rows="5"></textarea>
+
+		            </div>
+
+		            <div class="input-grid three">
+
+		                <div class="input-group">
+
+		                    <label>Priority</label>
+
+		                    <select id="editPriority">
+
+		                        <option value="HIGH">High</option>
+		                        <option value="MEDIUM">Medium</option>
+		                        <option value="LOW">Low</option>
+
+		                    </select>
+
+		                </div>
+
+		                <div class="input-group">
+
+		                    <label>Status</label>
+
+		                    <select id="editStatus">
+
+		                        <option value="PENDING">Pending</option>
+		                        <option value="IN_PROGRESS">In Progress</option>
+		                        <option value="COMPLETED">Completed</option>
+
+		                    </select>
+
+		                </div>
+
+		                <div class="input-group">
+
+		                    <label>Category</label>
+
+		                    <select id="editCategory">
+
+		                        <option value="WORK">Work</option>
+		                        <option value="STUDY">Study</option>
+		                        <option value="PERSONAL">Personal</option>
+		                        <option value="HEALTH">Health</option>
+
+		                    </select>
+
+		                </div>
+
+		            </div>
+
+		            <div class="input-group">
+
+		                <label>Due Date</label>
+
+		                <input
+		                        type="date"
+		                        id="editDueDate">
+
+		            </div>
+
+		            <div class="button-row">
+
+		                <button
+		                        class="primary-btn"
+		                        type="submit">
+
+		                    <i class="fa-solid fa-floppy-disk"></i>
+
+		                    Update Task
+
+		                </button>
+
+		            </div>
+
+		        </form>
+
+		    </div>
+
+		</div>
+
+		<!-- ================= DELETE MODAL ================= -->
+
+		<div id="deleteModal" class="modal">
+
+		    <div class="delete-box">
+
+		        <i class="fa-solid fa-trash"></i>
+
+		        <h2>
+
+		            Delete Task?
+
+		        </h2>
+
+		        <p>
+
+		            This action cannot be undone.
+
+		        </p>
+
+		        <div class="button-row">
+
+		            <button id="confirmDelete"
+		                    class="danger-btn">
+
+		                Delete
+
+		            </button>
+
+		            <button id="cancelDelete"
+		                    class="secondary-btn">
+
+		                Cancel
+
+		            </button>
+
+		        </div>
+
+		    </div>
+
+		</div>
+
+		<!-- ================= FOOTER ================= -->
+
+		<footer>
+
+		    <div>
+
+		        <h3>
+
+		            TaskFlow Pro
+
+		        </h3>
+
+		        <p>
+
+		            Built with ❤️ using Spring Boot + MongoDB + HTML + CSS + JavaScript
+
+		        </p>
+
+		    </div>
+
+		    <div>
+
+		        © 2026 All Rights Reserved
+
+		    </div>
+
+		</footer>
+
+		</main>
+
+		</div>
+
+		<script src="script.js"></script>
+
+		</body>
+
+		</html>
